@@ -1,19 +1,20 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 function Counter() {
-    const [count, setCount] = useState(0);
-  
-    const handleClick = () => {
-      setCount(prevCount => prevCount + 1);
-      setCount(prevCount => prevCount + 1);
-      // both updates here correctly use the updated value
-    };
-  
-    return (
-      <div>
-        <p>You clicked {count} times</p>
-        <button onClick={handleClick}>Click me</button>
-      </div>
-    );
-  }
-  export default Counter;
+  const [count, setCount] = useState(0);
+
+  useEffect(() => {
+    document.title = `You clicked ${count} times`;
+  }, [count]);
+
+  return (
+    <div>
+      <p>You clicked {count} times</p>
+      <button onClick={() => setCount(count + 1)}>
+        Click me
+      </button>
+    </div>
+  );
+}
+
+export default Counter
